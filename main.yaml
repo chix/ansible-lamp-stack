@@ -1,0 +1,6 @@
+---
+- include: ./tasks/01_bootstrap.yaml
+- include: ./tasks/02_apache.yaml
+- include: ./tasks/03_mysql.yaml
+- include: ./tasks/04_php.yaml
+- include: ./tasks/05_pimcore_tools.yaml
