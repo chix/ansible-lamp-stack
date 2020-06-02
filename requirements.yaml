@@ -5,5 +5,4 @@
 - src: geerlingguy.php
 - src: geerlingguy.composer
 - src: geerlingguy.apache-php-fpm
-- src: geerlingguy.redis
 - src: geerlingguy.certbot

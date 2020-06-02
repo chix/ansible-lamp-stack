@@ -1,6 +1,7 @@
 ---
 - name: Install and configure MySQL
   hosts: webservers
+  become: yes
   remote_user: root
   vars_files:
     - ../vars/mysql.yaml

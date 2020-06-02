@@ -21,19 +21,21 @@
     notify:
       - update timezone
   - name: add backports repository
-    apt_repository: repo='deb http://ftp.cz.debian.org/debian jessie-backports main contrib non-free' state=present update_cache=yes
+    apt_repository: repo='deb http://ftp.cz.debian.org/debian stretch-backports main contrib non-free' state=present update_cache=yes
   - name: Update repo cache
     apt: update_cache=yes
   - name: Install default tools
-    apt: pkg={{ item }} state=installed update_cache=yes
-    with_items:
-    - "sudo"
-    - "vim"
-    - "htop"
-    - "curl"
-    - "git"
-    - "tig"
-    - "imagemagick"
+    apt:
+      pkg:
+        - sudo
+        - vim
+        - htop
+        - iotop
+        - curl
+        - git
+        - tig
+      state: present
+      update_cache: yes
   - name: Add default user
     user:
       name: "{{ default_user }}"
@@ -50,18 +52,34 @@
       user: "{{ default_user }}"
       key: "{{ lookup('file', lookup('env','HOME') + '/{{ default_user_key }}') }}"
       state: present
-  - name: Install Certbot for Let's Encryp certificates management
-    apt:
-      name: python-certbot-apache
-      state: latest
-      default_release: jessie-backports
-  - name: Add Certbot's renew command entry to crontab
-    cron:
-      name: "Renew Let's Encrypt certificates"
-      minute: "30"
-      hour: "03"
-      job: "certbot renew"
-      user: "root"
+  - name: Copy SSH config
+    copy:
+      src: ssh_config
+      dest: /home/{{ default_user }}/.ssh/config
+      owner: "{{ default_user }}"
+      group: "{{ default_user }}"
+      mode: '0600'
+  - name: Copy bitbucket.org SSH key
+    copy:
+      src: ~/.ssh/id_mk_bitbucket
+      dest: /home/{{ default_user }}/.ssh/id_mk_bitbucket
+      owner: "{{ default_user }}"
+      group: "{{ default_user }}"
+      mode: '0600'
+  - name: Copy github.com SSH key
+    copy:
+      src: ~/.ssh/id_mk_github
+      dest: /home/{{ default_user }}/.ssh/id_mk_github
+      owner: "{{ default_user }}"
+      group: "{{ default_user }}"
+      mode: '0600'
+  - name: Copy script to (re)set vhost file permissions
+    copy:
+      src: set_vhost_file_permissions.sh
+      dest: /home/{{ default_user }}/set_vhost_file_permissions.sh
+      owner: "{{ default_user }}"
+      group: "{{ default_user }}"
+      mode: '0755'
 
   handlers:
   - name: update timezone

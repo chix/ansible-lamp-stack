@@ -1,6 +1,7 @@
 ---
-- include: ./tasks/01_bootstrap.yaml
-- include: ./tasks/02_apache.yaml
-- include: ./tasks/03_mysql.yaml
-- include: ./tasks/04_php.yaml
-- include: ./tasks/05_pimcore_tools.yaml
+- import_playbook: ./tasks/01_bootstrap.yaml
+- import_playbook: ./tasks/02_apache.yaml
+- import_playbook: ./tasks/03_mysql.yaml
+- import_playbook: ./tasks/04_php.yaml
+- import_playbook: ./tasks/05_certbot.yaml
+- import_playbook: ./tasks/06_additional_tools.yaml
