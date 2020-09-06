@@ -4,5 +4,12 @@
   remote_user: root
   vars_files:
     - ../vars/certbot.yaml
+  tasks:
+  - name: Certbot Apache plugin
+    apt:
+      pkg:
+        - python-certbot-apache
+      state: present
+      update_cache: yes
   roles:
     - geerlingguy.certbot

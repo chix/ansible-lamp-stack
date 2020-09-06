@@ -1,7 +1,7 @@
 # Ansible LAMP stack
 
 ## Pre-install
-- set `ansible_ssh_pass` in `hosts.ini` if you don't have ssh keys authentication setup
+- set `ansible_ssh_pass` in `hosts.ini` if you don't have ssh keys authentication setup (`sshpass` is required as well)
 
 ## Installation
 - install ansible

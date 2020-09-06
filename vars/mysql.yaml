@@ -2,3 +2,4 @@
 mysql_user_home: /root
 mysql_root_password: root
 mysql_root_password_update: true
+mysql_python_package_debian: python3-mysqldb

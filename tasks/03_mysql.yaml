@@ -5,5 +5,8 @@
   remote_user: root
   vars_files:
     - ../vars/mysql.yaml
+  pre_tasks:
+    - name: installing python-3 mysql libraries
+      apt: name=python3-mysqldb state=present
   roles:
     - geerlingguy.mysql
