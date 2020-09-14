@@ -14,3 +14,4 @@
 - run `sudo service apache2 start`
 - run `sudo mysql_secure_installation` and set a new root password
 - run `sudo mysql -uroot -p` and run `update mysql.user set plugin = 'mysql_native_password' where User='root';` and `FLUSH PRIVILEGES;` so any user can log into mysql
+- add swap (https://linuxize.com/post/how-to-add-swap-space-on-debian-9/)

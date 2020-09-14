@@ -35,6 +35,7 @@
         - git
         - tig
         - ncdu
+        - zip
       state: present
       update_cache: yes
   - name: Add default user
