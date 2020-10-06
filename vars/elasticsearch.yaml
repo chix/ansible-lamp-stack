@@ -1,0 +1,11 @@
+---
+elasticsearch_version: '7.x'
+elasticsearch_service_state: started
+elasticsearch_service_enabled: true
+elasticsearch_network_host: localhost
+elasticsearch_http_port: 9200
+elasticsearch_heap_size_min: 256m
+elasticsearch_heap_size_max: 256m
+elasticsearch_extra_options: |
+  node.name: chix-1
+  cluster.initial_master_nodes: chix-1

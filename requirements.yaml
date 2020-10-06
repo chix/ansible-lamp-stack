@@ -6,3 +6,5 @@
 - src: geerlingguy.composer
 - src: geerlingguy.apache-php-fpm
 - src: geerlingguy.certbot
+- src: geerlingguy.java
+- src: geerlingguy.elasticsearch

@@ -1,0 +1,10 @@
+---
+- name: Install Elasticsearch
+  hosts: webservers
+  become: yes
+  remote_user: root
+  vars_files:
+    - ../vars/elasticsearch.yaml
+  roles:
+    - geerlingguy.java
+    - geerlingguy.elasticsearch
