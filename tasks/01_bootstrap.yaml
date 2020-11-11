@@ -75,12 +75,53 @@
       owner: "{{ default_user }}"
       group: "{{ default_user }}"
       mode: '0600'
+  - name: Add deployment user
+    user:
+      name: "{{ deployment_user }}"
+      group: "www-data"
+      groups: "www-data,{{deployment_user}}"
+      shell: /bin/bash
+  - name: Set umask to 002 in .profile of deployment user
+    lineinfile:
+      dest: /home/{{ deployment_user }}/.profile
+      state: present
+      regexp: '^umask\s+\d+'
+      insertbefore: EOF
+      line: 'umask 002'
+  - name: Set umask to 002 in .bash_rc of deployment user
+    lineinfile:
+      dest: /home/{{ deployment_user }}/.bash_rc
+      state: present
+      regexp: '^umask\s+\d+'
+      insertbefore: EOF
+      line: 'umask 002'
+  - name: Set umask_override in /etc/sudoers
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^Defaults\s+umask_override'
+      insertbefore: EOF
+      line: 'Defaults umask_override'
+  - name: Set default umask in /etc/sudoers
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^Defaults\s+umask=\d+'
+      insertbefore: EOF
+      line: 'Defaults umask=002'
+  - name: Add deployment user to sudoers
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%{{ deployment_user }}'
+      line: '%{{ deployment_user }} ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
   - name: Copy script to (re)set vhost file permissions
     copy:
       src: set_vhost_file_permissions.sh
-      dest: /home/{{ default_user }}/set_vhost_file_permissions.sh
-      owner: "{{ default_user }}"
-      group: "{{ default_user }}"
+      dest: /home/{{ deployment_user }}/set_vhost_file_permissions.sh
+      owner: "{{ deployment_user }}"
+      group: "{{ deployment_user }}"
       mode: '0755'
 
   handlers:

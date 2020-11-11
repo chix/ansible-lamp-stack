@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo chown -R www-data:martin .
+sudo chown -R www-data:www-data .
 sudo find . -type d -exec chmod 775 {} \;
 sudo find . -type f -exec chmod 664 {} \;
 sudo find ./.git -type d -exec chmod 775 {} \;
