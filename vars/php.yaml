@@ -1,19 +1,18 @@
 ---
-php_version: '7.4'
+php_version: '8.2'
 php_enable_php_fpm: true
 php_webserver_daemon: "apache2"
 php_date_timezone: "Europe/Prague"
 php_short_open_tag: true
 php_packages_extra:
-  - php7.4-bcmath
-  - php7.4-bz2
-  - php7.4-curl
-  - php7.4-gd
-  - php7.4-imagick
-  - php7.4-intl
-  - php7.4-json
-  - php7.4-mbstring
-  - php7.4-mysql
-  - php7.4-soap
-  - php7.4-xml
-  - php7.4-zip
+  - php8.2-bcmath
+  - php8.2-bz2
+  - php8.2-curl
+  - php8.2-gd
+  - php8.2-imagick
+  - php8.2-intl
+  - php8.2-mbstring
+  - php8.2-mysql
+  - php8.2-soap
+  - php8.2-xml
+  - php8.2-zip

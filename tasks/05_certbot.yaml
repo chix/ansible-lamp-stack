@@ -8,7 +8,7 @@
   - name: Certbot Apache plugin
     apt:
       pkg:
-        - python-certbot-apache
+        - python3-certbot-apache
       state: present
       update_cache: yes
   roles:

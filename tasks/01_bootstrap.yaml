@@ -21,7 +21,7 @@
     notify:
       - update timezone
   - name: add backports repository
-    apt_repository: repo='deb http://ftp.cz.debian.org/debian stretch-backports main contrib non-free' state=present update_cache=yes
+    apt_repository: repo='deb http://ftp.cz.debian.org/debian bookworm-backports main contrib non-free' state=present update_cache=yes
   - name: Update repo cache
     apt: update_cache=yes
   - name: Install default tools
@@ -61,13 +61,6 @@
       owner: "{{ default_user }}"
       group: "{{ default_user }}"
       mode: '0600'
-  - name: Copy bitbucket.org SSH key
-    copy:
-      src: ~/.ssh/id_mk_bitbucket
-      dest: /home/{{ default_user }}/.ssh/id_mk_bitbucket
-      owner: "{{ default_user }}"
-      group: "{{ default_user }}"
-      mode: '0600'
   - name: Copy github.com SSH key
     copy:
       src: ~/.ssh/id_mk_github
@@ -79,7 +72,7 @@
     user:
       name: "{{ deployment_user }}"
       group: "www-data"
-      groups: "www-data,{{deployment_user}}"
+      #groups: "www-data,{{deployment_user}}"
       shell: /bin/bash
   - name: Set umask to 002 in .profile of deployment user
     lineinfile:
@@ -88,13 +81,13 @@
       regexp: '^umask\s+\d+'
       insertbefore: EOF
       line: 'umask 002'
-  - name: Set umask to 002 in .bash_rc of deployment user
-    lineinfile:
-      dest: /home/{{ deployment_user }}/.bash_rc
-      state: present
-      regexp: '^umask\s+\d+'
-      insertbefore: EOF
-      line: 'umask 002'
+  #- name: Set umask to 002 in .bash_rc of deployment user
+  #  lineinfile:
+  #    dest: /home/{{ deployment_user }}/.bash_rc
+  #    state: present
+  #    regexp: '^umask\s+\d+'
+  #    insertbefore: EOF
+  #    line: 'umask 002'
   - name: Set umask_override in /etc/sudoers
     lineinfile:
       dest: /etc/sudoers
@@ -121,7 +114,7 @@
       src: set_vhost_file_permissions.sh
       dest: /home/{{ deployment_user }}/set_vhost_file_permissions.sh
       owner: "{{ deployment_user }}"
-      group: "{{ deployment_user }}"
+      #group: "{{ deployment_user }}"
       mode: '0755'
 
   handlers:

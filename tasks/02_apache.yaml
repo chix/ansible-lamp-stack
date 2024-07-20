@@ -12,7 +12,7 @@
         recurse: yes
     - name: Download Adminer
       get_url:
-        url: https://www.adminer.org/latest.php
+        url: https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-mysql.php
         dest: "{{ adminer_directory_path }}/index.php"
         mode: 0644
         timeout: 60

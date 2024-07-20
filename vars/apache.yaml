@@ -13,8 +13,8 @@ apache_vhosts:
       RewriteCond %{SERVER_NAME} =adminer.{{ inventory_hostname }}
       RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,QSA,R=permanent]
 apache_mods_enabled:
-  - rewrite.load
-  - headers.load
-  - ssl.load
-  - proxy.load
-  - proxy_http.load
+  - rewrite
+  - headers
+  - ssl
+  - proxy
+  - proxy_http
